@@ -1,0 +1,129 @@
+definitions:
+  model.TransactionRequest:
+    properties:
+      admin_fee:
+        type: number
+      asset_name:
+        type: string
+      customer_id:
+        type: string
+      interest:
+        type: number
+      otr:
+        type: number
+      tenor_in_month:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /api/customers:
+    get:
+      consumes:
+      - application/json
+      operationId: get-customers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Customers
+      tags:
+      - Customers
+  /api/customers/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: get-customer
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Customer
+      tags:
+      - Customers
+  /api/customers/{id}/credit-limit:
+    get:
+      consumes:
+      - application/json
+      operationId: get-credit-limit
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Credit Limit
+      tags:
+      - Customers
+  /api/transactions:
+    post:
+      consumes:
+      - application/json
+      operationId: create-transaction
+      parameters:
+      - description: Transaction Body
+        in: body
+        name: transaction
+        required: true
+        schema:
+          $ref: '#/definitions/model.TransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create Transaction
+      tags:
+      - Transactions
+  /api/transactions/{customer_id}:
+    get:
+      consumes:
+      - application/json
+      operationId: get-transactions
+      parameters:
+      - description: Customer ID
+        in: path
+        name: customer_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Transactions
+      tags:
+      - Transactions
+  /api/transactions/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: get-transaction
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Transaction
+      tags:
+      - Transactions
+swagger: "2.0"
